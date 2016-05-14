@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <thead>
+      <tr>
+        <th>买家账号</th>
+        <th>商家账号</th>
+        <th>商品信息</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= link_to @orderinfo.buyer_account, orderinfo_path(@orderinfo.buyer_account) %></td>
+        <td><%= link_to @orderinfo.seller_account, orderinfo_path(@orderinfo.seller_account) %></td>
+        <td><%= @orderinfo.product_info%></td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,46 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+AccountsController	app/controllers/accounts_controller.rb	/^class AccountsController < ApplicationController$/;"	c
+show	app/controllers/accounts_controller.rb	/^  def show$/;"	f	class:AccountsController
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+PagesController	app/controllers/pages_controller.rb	/^class PagesController < ApplicationController$/;"	c
+home	app/controllers/pages_controller.rb	/^  def home$/;"	f	class:PagesController
+UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
+destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController
+index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersController
+new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
+show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
+AccountsHelper	app/helpers/accounts_helper.rb	/^module AccountsHelper$/;"	m
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+PagesHelper	app/helpers/pages_helper.rb	/^module PagesHelper$/;"	m
+UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
+Account	app/models/account.rb	/^class Account < ActiveRecord::Base$/;"	c
+Order	app/models/order.rb	/^class Order < ActiveRecord::Base$/;"	c
+Orderinfo	app/models/orderinfo.rb	/^class Orderinfo < ActiveRecord::Base$/;"	c
+UOrelation	app/models/u_orelation.rb	/^class UOrelation < ActiveRecord::Base$/;"	c
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:PaymentcrmSys
+PaymentcrmSys	config/application.rb	/^module PaymentcrmSys$/;"	m
+CreateUsers	db/migrate/20160425090005_create_users.rb	/^class CreateUsers < ActiveRecord::Migration$/;"	c
+change	db/migrate/20160425090005_create_users.rb	/^  def change$/;"	f	class:CreateUsers
+CreateAccounts	db/migrate/20160425092309_create_accounts.rb	/^class CreateAccounts < ActiveRecord::Migration$/;"	c
+change	db/migrate/20160425092309_create_accounts.rb	/^  def change$/;"	f	class:CreateAccounts
+CreateOrders	db/migrate/20160425093656_create_orders.rb	/^class CreateOrders < ActiveRecord::Migration$/;"	c
+change	db/migrate/20160425093656_create_orders.rb	/^  def change$/;"	f	class:CreateOrders
+CreateUOrelations	db/migrate/20160426155154_create_u_orelations.rb	/^class CreateUOrelations < ActiveRecord::Migration$/;"	c
+change	db/migrate/20160426155154_create_u_orelations.rb	/^  def change$/;"	f	class:CreateUOrelations
+CreateOrderinfos	db/migrate/20160427053426_create_orderinfos.rb	/^class CreateOrderinfos < ActiveRecord::Migration$/;"	c
+change	db/migrate/20160427053426_create_orderinfos.rb	/^  def change$/;"	f	class:CreateOrderinfos
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+AccountsControllerTest	test/controllers/accounts_controller_test.rb	/^class AccountsControllerTest < ActionController::TestCase$/;"	c
+PagesControllerTest	test/controllers/pages_controller_test.rb	/^class PagesControllerTest < ActionController::TestCase$/;"	c
+UsersControllerTest	test/controllers/users_controller_test.rb	/^class UsersControllerTest < ActionController::TestCase$/;"	c
+AccountTest	test/models/account_test.rb	/^class AccountTest < ActiveSupport::TestCase$/;"	c
+OrderTest	test/models/order_test.rb	/^class OrderTest < ActiveSupport::TestCase$/;"	c
+OrderinfoTest	test/models/orderinfo_test.rb	/^class OrderinfoTest < ActiveSupport::TestCase$/;"	c
+UOrelationTest	test/models/u_orelation_test.rb	/^class UOrelationTest < ActiveSupport::TestCase$/;"	c
+UserTest	test/models/user_test.rb	/^class UserTest < ActiveSupport::TestCase$/;"	c
+ActiveSupport	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c

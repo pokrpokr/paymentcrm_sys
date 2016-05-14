@@ -1,0 +1,46 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Account	app/models/account.rb	/^class Account < ActiveRecord::Base$/;"	c
+AccountTest	test/models/account_test.rb	/^class AccountTest < ActiveSupport::TestCase$/;"	c
+AccountsController	app/controllers/accounts_controller.rb	/^class AccountsController < ApplicationController$/;"	c
+AccountsControllerTest	test/controllers/accounts_controller_test.rb	/^class AccountsControllerTest < ActionController::TestCase$/;"	c
+AccountsHelper	app/helpers/accounts_helper.rb	/^module AccountsHelper$/;"	m
+ActiveSupport	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:PaymentcrmSys
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+CreateAccounts	db/migrate/20160425092309_create_accounts.rb	/^class CreateAccounts < ActiveRecord::Migration$/;"	c
+CreateOrderinfos	db/migrate/20160427053426_create_orderinfos.rb	/^class CreateOrderinfos < ActiveRecord::Migration$/;"	c
+CreateOrders	db/migrate/20160425093656_create_orders.rb	/^class CreateOrders < ActiveRecord::Migration$/;"	c
+CreateUOrelations	db/migrate/20160426155154_create_u_orelations.rb	/^class CreateUOrelations < ActiveRecord::Migration$/;"	c
+CreateUsers	db/migrate/20160425090005_create_users.rb	/^class CreateUsers < ActiveRecord::Migration$/;"	c
+Order	app/models/order.rb	/^class Order < ActiveRecord::Base$/;"	c
+OrderTest	test/models/order_test.rb	/^class OrderTest < ActiveSupport::TestCase$/;"	c
+Orderinfo	app/models/orderinfo.rb	/^class Orderinfo < ActiveRecord::Base$/;"	c
+OrderinfoTest	test/models/orderinfo_test.rb	/^class OrderinfoTest < ActiveSupport::TestCase$/;"	c
+PagesController	app/controllers/pages_controller.rb	/^class PagesController < ApplicationController$/;"	c
+PagesControllerTest	test/controllers/pages_controller_test.rb	/^class PagesControllerTest < ActionController::TestCase$/;"	c
+PagesHelper	app/helpers/pages_helper.rb	/^module PagesHelper$/;"	m
+PaymentcrmSys	config/application.rb	/^module PaymentcrmSys$/;"	m
+UOrelation	app/models/u_orelation.rb	/^class UOrelation < ActiveRecord::Base$/;"	c
+UOrelationTest	test/models/u_orelation_test.rb	/^class UOrelationTest < ActiveSupport::TestCase$/;"	c
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+UserTest	test/models/user_test.rb	/^class UserTest < ActiveSupport::TestCase$/;"	c
+UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
+UsersControllerTest	test/controllers/users_controller_test.rb	/^class UsersControllerTest < ActionController::TestCase$/;"	c
+UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
+change	db/migrate/20160425090005_create_users.rb	/^  def change$/;"	f	class:CreateUsers
+change	db/migrate/20160425092309_create_accounts.rb	/^  def change$/;"	f	class:CreateAccounts
+change	db/migrate/20160425093656_create_orders.rb	/^  def change$/;"	f	class:CreateOrders
+change	db/migrate/20160426155154_create_u_orelations.rb	/^  def change$/;"	f	class:CreateUOrelations
+change	db/migrate/20160427053426_create_orderinfos.rb	/^  def change$/;"	f	class:CreateOrderinfos
+destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController
+home	app/controllers/pages_controller.rb	/^  def home$/;"	f	class:PagesController
+index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersController
+new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
+show	app/controllers/accounts_controller.rb	/^  def show$/;"	f	class:AccountsController
+show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController

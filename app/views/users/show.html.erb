@@ -1,0 +1,18 @@
+<div class="showsidebar ">
+  <div class="list-group">
+    <button type="button" class="list-group-item userbtn">用户信息</button>
+    <button type="button" class="list-group-item accountbtn">账户信息</button>
+    <button type="button" class="list-group-item orderbtn">订单信息</button>
+  </div>
+</div>
+<div class="showpage">
+  <div id="userpage">
+  <%= render @user %>
+  </div>
+  <div id="accountpage">
+    <%= render "users/accounts" %>
+  </div>
+  <div id="orderpage">
+    <%= render "users/orders" %>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+class UOrelationsController < ApplicationController
+end
