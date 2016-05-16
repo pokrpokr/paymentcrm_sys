@@ -51,11 +51,11 @@ module Api::FinancesHelper
 private
   def u_finance_countall #用户交易金额统计
     sum = Basic.where("userid = ?",params[:id]).sum("money")
-    @sum =sum.to_s #总金额
+    @sum =sum #总金额
     max = Basic.where("userid = ?",params[:id]).maximum("money")
-    @max = max.to_s #最大金额
+    @max = max #最大金额
     min = Basic.where("userid = ?",params[:id]).minimum("money")
-    @min = min.to_s #最小值
+    @min = min #最小值
   end
 
   def u_finance_countby_time(uid,bet,et) #某段时间的交易金额统计
@@ -63,20 +63,21 @@ private
     begintime = bet
     endtime =et
     sum = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime).sum("money")
-    @sum = sum.to_s
+    @sum = sum
     max = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime).maximum("money")
-    @max = max.to_s
+    @max = max
     min = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime).minimum("money")
-    @min = min.to_s
+    @min = min
+    @count = {sumcount:@sum,maxcount:@max,mincount:@min}
   end
 
-  def a_finance_countall #用户交易金额统计
+  def a_finance_countall #账户交易金额统计
     sum = Basic.where("pay_account = ?",params[:id]).sum("money")
-    @sum =sum.to_s #总金额
+    @sum =sum #总金额
     max = Basic.where("pay_account = ?",params[:id]).maximum("money")
-    @max = max.to_s #最大金额
+    @max = max #最大金额
     min = Basic.where("pay_account = ?",params[:id]).minimum("money")
-    @min = min.to_s #最小值
+    @min = min #最小值
   end
 
   def a_finance_countby_time(aid,bet,et) #某段时间的交易金额统计
@@ -84,16 +85,16 @@ private
     begintime = bet
     endtime =et
     sum = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,begintime,endtime).sum("money")
-    @sum = sum.to_s
+    @sum = sum
     max = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,begintime,endtime).maximum("money")
-    @max = max.to_s
+    @max = max
     min = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,begintime,endtime).minimum("money")
-    @min = min.to_s
+    @min = min
   end
 
   def u_search_all #用户关联搜索默认时间降序
     finances = Basic.where("userid = ?",params[:id]).order(receive_time: :desc)
-    @finances = finances.limit(30)
+    @finances = finances.limit(10)
   end
 
   def u_search_bytime(uid,bet,et) #起始时间和终止时间都存在

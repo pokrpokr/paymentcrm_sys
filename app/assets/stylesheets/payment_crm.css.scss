@@ -3,7 +3,6 @@
 
 
 body {
-  padding-top: 60px;
 }
 
 section {
@@ -46,7 +45,9 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
+head{
+  position: absolute;
+}
 #logo {
   float: left;
   margin-right: 10px;
@@ -137,5 +138,23 @@ footer {
   display: none;
 }
 #orderpage {
+  display: none;
+}
+#financepage {
+  display: none;
+}
+
+.cbtn {
+  float: right;
+}
+.f_head {
+  width: 100%;
+  height: 34px;
+}
+
+#f_search {
+  display: none;
+}
+#f_count {
   display: none;
 }

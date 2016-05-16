@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   delete 'logout'          =>  'sessions#destroy'
 
   namespace :api do
+    get 'finances/search'           =>  'finances#search'
+    get 'finances/count'            =>  'finances#count'
     resources :finances
   end
 
