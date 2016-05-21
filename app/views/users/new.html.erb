@@ -1,2 +1,18 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>注册</h1>
+<div class="row" id="signupform">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+        <%= f.label "用户名" %>
+        <%= f.text_field :username %>
+        <%= f.label "邮箱" %>
+        <%= f.email_field :email %>
+        <%= f.select :user_type,html_options={用户:"1",商户:"2"}%>
+        <%= f.label "登录密码" %>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation, "确认登录密码" %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.submit "注册账户", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

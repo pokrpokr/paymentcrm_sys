@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
+  skip_before_action :logged_in_user,only: [:new,:create]
   include UsersHelper
   def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      log_in(@user)
+      flash[:success] = "欢迎使用本管理系统"
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -17,7 +30,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @accounts = @user.accounts
     @orders = @user.orders
-    @finances = @user.basics
   end
 
   def index

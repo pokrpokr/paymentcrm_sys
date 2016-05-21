@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'finances/index'
+
+  get 'finances/show'
+
   get 'sessions/new'
+
+  get    'finances/us_search/:id' => 'finances#u_search', as: 'u_search'
 
   get    'orderinfos'      => 'orderinfos#index'
 
@@ -9,13 +15,17 @@ Rails.application.routes.draw do
 
   root   'pages#home'
 
-  get    'users/new'
+  get    'users/new'       =>  'users#new', as: 'signup'
 
   get    'users/:id'       =>  'users#show', as: 'user'
   
   get    'users'           =>  'users#index'
 
   get    'users/:id/edit'  =>  'users#edit'
+
+  get    'accounts/new', as: 'create_account'
+
+  get    'accounts/:id/edit'   =>  'accounts#edit', as:'change_password'
 
   get    'accounts/:id'    =>  'accounts#show', as: 'account'
 

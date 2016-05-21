@@ -5,39 +5,24 @@ class Api::FinancesController < ApplicationController
   end
 
   def index
-    #user_id = "2"
-    #account_id = "2"
-    #params[:bet] = "?"
-    #params[:et] = "?"
-    #if params[:id] == user_id
-    #user_finances_search
-    #elsif params[:id] == account_id
-    #account_finances_search
-    #end
-    #if params[:id] = userid
-    #  user_finances_count
-    #elsif params[:id] = accountid
-    #  account_finances_count
-    #end
   end
 
   def count
-    params[:id] = "2"
-    params[:bet] = "2016-02-15"
-    params[:et]  = "2016-02-20"
-      user_finances_count
+    # params[:id] = "2"
+    # params[:bet] = "2016-02-15"
+    # params[:et]  = "2016-02-20"
+    # if user_id
+    #   params[:id] =user_id
+      # user_finances_count
     #elsif params[:id] = accountid
     #  account_finances_count
     #end
   end
 
   def search
-    params[:id] = "2"
-    # params[:bet] = "2016-02-15"
-    # params[:et]  = "2016-02-20"
-      user_finances_search
     #if params[:id] == user_id
-    #user_finances_search
+    params[:id] = "2"
+     user_finances_search
     #elsif params[:id] == account_id
     #account_finances_search
     #end

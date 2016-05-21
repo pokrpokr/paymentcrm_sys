@@ -53,4 +53,12 @@ module SessionsHelper
     end
   end
 
+  def current_user?
+    if params[:id] == session[:user_id]
+      true
+    else
+      false
+    end
+  end
+
 end

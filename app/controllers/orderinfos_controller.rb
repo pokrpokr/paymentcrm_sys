@@ -4,6 +4,7 @@ class OrderinfosController < ApplicationController
   end
 
   def show
+
     params[:bank_account] = params[:id]
     @account = Account.where("bank_account = ?",params[:bank_account])
     @account.each do |acc|

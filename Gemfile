@@ -31,7 +31,8 @@ gem 'sdoc', '0.4.0', group: :doc
 gem 'jquery-turbolinks'
 # Use mysql2
 gem 'mysql2', '0.3.20'
-
+# bootstrap-datepicker
+gem 'bootstrap-datepicker-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

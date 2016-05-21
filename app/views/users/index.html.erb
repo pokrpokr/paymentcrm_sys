@@ -1,10 +1,13 @@
-<div class="col-md-8">
+<div class="container">
+  <div class="col-md-8">
     <%= form_tag({controller: "users",action: "index"}, method: "get") do %>
         <%= label_tag("请输入关键字") %>
         <%= text_field_tag(:search) %>
         <%= submit_tag("搜索")%>
     <% end %>
+  </div>
 </div>
+
 <% if  @users.nil? %>
     <h2>用户不存在</h2>
 <%else%>

@@ -47,7 +47,6 @@ module Api::FinancesHelper
     end
   end
 
-
 private
   def u_finance_countall #用户交易金额统计
     sum = Basic.where("userid = ?",params[:id]).sum("money")
@@ -68,7 +67,7 @@ private
     @max = max
     min = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime).minimum("money")
     @min = min
-    @count = {sumcount:@sum,maxcount:@max,mincount:@min}
+    # @count = {sumcount:@sum,maxcount:@max,mincount:@min}
   end
 
   def a_finance_countall #账户交易金额统计
@@ -93,8 +92,8 @@ private
   end
 
   def u_search_all #用户关联搜索默认时间降序
-    finances = Basic.where("userid = ?",params[:id]).order(receive_time: :desc)
-    @finances = finances.limit(10)
+    finances =Basic.where("userid = ?",params[:id]).order(receive_time: :desc)
+    @finances = finances
   end
 
   def u_search_bytime(uid,bet,et) #起始时间和终止时间都存在

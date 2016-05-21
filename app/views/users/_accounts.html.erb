@@ -1,3 +1,4 @@
+<%= link_to"绑定账户",create_account_path(@user) %>
 <% unless @accounts.empty? %>
   <table class="table table-striped">
     <thead>
@@ -9,6 +10,7 @@
       <th>银行电话</th>
       <th>所属地区</th>
       <th>余额</th>
+      <th>操作</th>
     </tr>
     </thead>
     <tbody>
@@ -19,12 +21,34 @@
               <td>支付账户</td>
           <% elsif account.account_type == "2"%>
               <td>银行卡</td>
+          <%elsif account.account_type.nil? %>
+              <td>没有信息</td>
           <% end %>
           <td><%= account.bank_account_no %></td>
-          <td><%= account.bank_type %></td>
-          <td><%= account.bank_phone %></td>
-          <td><%= account.area %></td>
-          <td><%= account.balance %></td>
+          <% if account.bank_type.nil? %>
+              <td>没有信息</td>
+          <% else %>
+              <td><%= account.bank_type %></td>
+          <% end %>
+
+          <% if account.bank_phone.nil? %>
+              <td>没有信息</td>
+          <% else %>
+              <td><%= account.bank_phone %></td>
+          <% end %>
+
+          <% if account.area.nil? %>
+              <td>没有信息</td>
+          <% else %>
+              <td><%= account.area %></td>
+          <% end %>
+
+          <% if account.balance.nil? %>
+              <td>没有信息</td>
+          <% else %>
+              <td><%= account.balance %></td>
+          <% end %>
+          <td><%= link_to "解绑账号",account,method: :delete,data: {confirm: "确定解绑?"}%> | <%= link_to "修改密码",change_password_path(account)%></td>
         </tr>
     <% end %>
     </tbody>

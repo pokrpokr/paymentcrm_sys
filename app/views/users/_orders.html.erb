@@ -14,7 +14,12 @@
             <td><%= link_to order.order_id, order_path(order) %></td>
             <td><%= order.order_status %></td>
             <td><%= order.order_sum %></td>
-            <td><%= link_to "删除", "#"%></td>
+            <% if order.order_status == "完成" %>
+                <td><%= link_to "查看", "#"%></td>
+            <% elsif order.order_status == "待确认完成" %>
+                <td><%= link_to "完成订单", "#"%></td>
+            <% end %>
+
           </tr>
         <% end %>
       </tbody>
