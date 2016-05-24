@@ -11,15 +11,17 @@
       <tbody>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= link_to order.order_id, order_path(order) %></td>
+            <td><%= order.order_id %></td>
             <td><%= order.order_status %></td>
             <td><%= order.order_sum %></td>
             <% if order.order_status == "完成" %>
-                <td><%= link_to "查看", "#"%></td>
-            <% elsif order.order_status == "待确认完成" %>
-                <td><%= link_to "完成订单", "#"%></td>
+                <td><%= link_to "查看", order_path(order) %></td>
+            <% elsif order.order_status == "未完成" %>
+                <td><%= form_for order do |status|  %>
+                      <%= status.hidden_field :order_status,:value => '完成' %>
+                      <%= status.submit "确认订单",data:{confirm:"确认订单?"},class: "btn btn-primary btn-xs" %>
+                  <% end %></td>
             <% end %>
-
           </tr>
         <% end %>
       </tbody>

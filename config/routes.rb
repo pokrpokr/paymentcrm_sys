@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   get    'orderinfos'      => 'orderinfos#index'
 
-  get    'orderinfos/:id'  => 'orderinfos#show'
+  get    'orderinfos/:id'  => 'orderinfos#show' , as: 'orderinfo'
 
   get    'orders/:id'      => 'orders#show', as: 'order'
+
+  get    'orders/:id/update'      => 'orders#update', as: 'update'
 
   root   'pages#home'
 

@@ -1,4 +1,8 @@
-<%= link_to"绑定账户",create_account_path(@user) %>
+<div class="c_acc_h">
+  <div class="c_acc">
+    <%= link_to"绑定账户",create_account_path(@user) %>
+  </div>
+</div>
 <% unless @accounts.empty? %>
   <table class="table table-striped">
     <thead>

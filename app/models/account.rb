@@ -25,7 +25,7 @@ class Account < ActiveRecord::Base
     end
   end
 
-  attr_reader :paypassword
+  #attr_reader :paypassword
 
 
   def paypassword=(unencrypted_password)

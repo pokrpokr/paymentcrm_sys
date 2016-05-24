@@ -4,13 +4,24 @@
         <th>买家账号</th>
         <th>商家账号</th>
         <th>商品信息</th>
+        <th>操作</th>
       </tr>
   </thead>
   <tbody>
+      <% if admin? %>
       <tr>
         <td><%= link_to @orderinfo.buyer_account, orderinfo_path(@orderinfo.buyer_account) %></td>
         <td><%= link_to @orderinfo.seller_account, orderinfo_path(@orderinfo.seller_account) %></td>
         <td><%= @orderinfo.product_info%></td>
+        <td><%= link_to "返回上一页",:back %></td>
       </tr>
+      <% else %>
+      <tr>
+        <td><%= @orderinfo.buyer_account %></td>
+        <td><%= @orderinfo.seller_account %></td>
+        <td><%= @orderinfo.product_info%></td>
+        <td><%= link_to "返回上一页",:back %></td>
+      </tr>
+      <% end %>
   </tbody>
 </table>
