@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  get    'finances/us_search/:id' => 'finances#u_search', as: 'u_search'
+  get    'finances/u_search/:id' => 'finances#u_search', as: 'u_search'
+
+  get    'finances/a_search/:id' => 'finances#a_search', as: 'a_search'
 
   get    'orderinfos'      => 'orderinfos#index'
 

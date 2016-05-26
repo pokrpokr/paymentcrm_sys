@@ -152,7 +152,7 @@ module ApplicationHelper
     accountid = aid
     begintime = bet
     endtime = et
-    finances Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,
+    finances = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,
                          begintime,endtime)
     @finances = finances.paginate(page:params[:page]).per_page(5)
   end
