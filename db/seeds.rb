@@ -57,7 +57,9 @@
              bank_phone: "",
              account_type: "1",
              area: "Beijing",
-             balance: "919191")
+             balance: "919191",
+             paypassword: "paypassword",
+             paypassword_confirmation:"paypassword")
 
   50.times do |n|
     user_id = n+2
@@ -68,6 +70,7 @@
     account_type = "2"
     area = "Beijing"
     balance = "****"
+    paypassword = "paypassword"
     Account.create!(
                user_id: user_id,
                bank_account: bank_account,
@@ -76,7 +79,9 @@
                bank_phone: bank_phone,
                account_type: account_type,
                area: area,
-               balance: balance)
+               balance: balance,
+               paypassword: paypassword,
+               paypassword_confirmation: paypassword)
   end
 
   25.times do |n|
@@ -88,6 +93,7 @@
     account_type = "2"
     area = "Beijing"
     balance = "****"
+    paypassword = "paypassword"
     Account.create!(
               user_id: user_id,
               bank_account: bank_account,
@@ -96,7 +102,9 @@
               bank_phone: bank_phone,
               account_type: account_type,
               area: area,
-              balance: balance)
+              balance: balance,
+              paypassword: paypassword,
+              paypassword_confirmation: paypassword)
   end
 
   Order.create!(
