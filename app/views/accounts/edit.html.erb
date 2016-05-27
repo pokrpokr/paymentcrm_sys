@@ -1,0 +1,12 @@
+<h1>请修改支付密码</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@account) do |a| %>
+        <%= a.label("新支付密码:") %>
+        <%= a.password_field :paypassword, class: 'form-control' %>
+        <%= a.label :paypassword_confirmation, "确认新支付密码:" %>
+        <%= a.password_field :paypassword_confirmation, class: 'form-control' %>
+        <%= a.submit "保存", class: "btn btn-primary" %><%= link_to "返回",:back %>
+    <% end %>
+  </div>
+</div>

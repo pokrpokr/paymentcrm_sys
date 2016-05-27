@@ -1,0 +1,110 @@
+<div class="f_head">
+  <div class="col-md-10">
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+    </script>
+    <%= form_tag({controller: "finances",action: "u_search"}, method: "get") do %>
+        <%= label_tag("请输入起始时间") %>
+        <%= text_field_tag :bet,nil,class:"datepicker"%>
+        <%= label_tag("请输入结束时间")%>
+        <%= text_field_tag :et,nil,class:"datepicker"%>
+        <% if admin? %>
+            <%= label_tag("请输入用户邮箱")%>
+            <%= text_field_tag :email,nil%>
+        <% end %>
+        <%= submit_tag "搜索",class: "btn btn-primary" %>
+    <% end %>
+  </div>
+      <div class="dropdown cbtn">
+        <%= link_to "返回",:back %>
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          财务操作
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a class="finance_s">财务搜索</a></li>
+          <li><a class="finance_c">财务统计</a></li>
+        </ul>
+      </div>
+    </div>
+ <% if @finances.nil? || @finances.empty? %>
+     <h2>没有账务信息</h2>
+ <% else %>
+    <div id="f_search">
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th>用户名</th>
+          <th>付款方式</th>
+          <th>付款账号</th>
+          <th>收款账号</th>
+          <th>收款银行卡号</th>
+          <th>收款银行</th>
+          <th>金额</th>
+          <th>收款方</th>
+          <th>信息</th>
+          <th>付款信息</th>
+          <th>付款时间</th>
+          <th>收款时间</th>
+        </tr>
+        </thead>
+          <tbody id="search">
+          <% @finances.each do |f| %>
+              <tr>
+                <td><%=f.userid%></td>
+                <td><%=f.pay_type%></td>
+                <td><%=Account.find(f.pay_account).bank_account%></td>
+                <td><%=f.to_bank_account%></td>
+                <td><%=f.to_bank_account_no%></td>
+                <td><%=f.to_bank_type%></td>
+                <td><%=f.money%></td>
+                <td><%=User.find(f.tousername).username%></td>
+                <td><%=f.info%></td>
+                <td><%=f.pay_info%></td>
+                <td><%=f.pay_time%></td>
+                <td><%=f.receive_time%></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @finances %>
+      </div>
+      <div id="f_count">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th>支出总金额</th>
+            <th>支出最大金额</th>
+            <th>支出最小金额</th>
+            <th>收入总金额</th>
+            <th>收入最大金额</th>
+            <th>收入最小金额</th>
+          </tr>
+          </thead>
+          <tbody id="count">
+          <tr>
+            <th><%= @sum %></th>
+            <th><%= @max %></th>
+            <th><%= @min %></th>
+            <% if @recsum.nil? %>
+              <th>无</th>
+            <% else %>
+              <th><%= @recsum %></th>
+            <% end %>
+            <% if @recmax.nil? %>
+                <th>无</th>
+            <% else %>
+                <th><%= @recmax %></th>
+            <% end %>
+            <% if @recmin.nil? %>
+                <th>无</th>
+            <% else %>
+                <th><%= @recmin %></th>
+            <% end %>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+ <% end %>
