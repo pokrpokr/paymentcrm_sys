@@ -110,14 +110,14 @@
   Order.create!(
            order_id: Time.now.inspect,
            order_info: "aaaaa",
-           order_status: "完成",
+           order_status: "未完成",
            order_sum: "1111"
   )
 
   Order.create!(
       order_id: Time.now.inspect,
       order_info: "bbbbbb",
-      order_status: "完成",
+      order_status: "未完成",
       order_sum: "9999"
   )
 
