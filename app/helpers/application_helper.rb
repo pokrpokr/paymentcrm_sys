@@ -95,7 +95,7 @@ module ApplicationHelper
 
   def a_finance_countall #账户交易金额统计
     sum = Basic.where("pay_account = ?",params[:id]).sum("money")
-    @sum =sum #总金额
+    @sum = sum #总金额
     max = Basic.where("pay_account = ?",params[:id]).maximum("money")
     @max = max #最大金额
     min = Basic.where("pay_account = ?",params[:id]).minimum("money")
@@ -115,7 +115,7 @@ module ApplicationHelper
   end
 
   def u_search_all #用户关联搜索默认时间降序
-    finances =Basic.where("userid = ?",params[:id]).order(receive_time: :desc)
+    finances = Basic.where("userid = ?",params[:id]).order(receive_time: :desc)
     @finances = finances.paginate(page:params[:page]).per_page(5)
   end
 

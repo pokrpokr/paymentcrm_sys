@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      flash[:success] = "欢迎使用本管理系统"
+      flash.now[:success] = "欢迎使用本管理系统"
       redirect_to @user
     else
       render 'new'
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "更新成功"
+      flash.now[:success] = "更新成功"
       redirect_to @user
     else
       render 'edit'
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "用户删除成功"
+    flash.now[:success] = "用户删除成功"
     redirect_to users_url
   end
 

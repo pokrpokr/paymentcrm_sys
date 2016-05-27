@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      flash[:success] = "绑定成功"
+      flash.now[:success] = "绑定成功"
       redirect_to @account
     else
       render 'new'
@@ -19,16 +19,17 @@ class AccountsController < ApplicationController
 
   def destroy
     Account.find(params[:id]).destroy
-    flash[:success] = "解绑账号"
+    flash.now[:success] = "解绑账号"
     redirect_to @current_user
   end
 
   def update
     @account = Account.find(params[:id])
-    if @account.update_attributes(account_params)
-      flash[:success] = "更新成功"
+    if @account.update_attributes(change_password)
+      flash[:success] = "修改成功"
       redirect_to @account
     else
+      flash[:danger] = "更新失败"
       render 'edit'
     end
   end
@@ -37,8 +38,13 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
   end
 
+
   private
   def account_params
     params.require(:account).permit(:user_id, :bank_account, :bank_account_no,:bank_phone,:bank_type,:account_type,:balance,:area,:paypassword,:paypassword_confirmation)
+  end
+
+  def change_password
+    params.require(:account).permit(:paypassword,:paypassword_confirmation)
   end
 end
