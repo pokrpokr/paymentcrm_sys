@@ -4,7 +4,7 @@ module ApplicationHelper
       u_search_all
     elsif !params[:bet].nil? && !params[:et].nil?
       u_search_bytime(params[:id],params[:bet],params[:et])
-    elsif !params[:bet].nil? && (params[:et].nil? || params[:et] == Time.now)
+    elsif !params[:bet].nil? && (params[:et].empty? || params[:et] == Time.now)
       u_search_bybgtime(params[:id],params[:bet])
     elsif params[:bet] == params[:et]
       u_search_byday(params[:bet])
@@ -18,7 +18,7 @@ module ApplicationHelper
       a_search_all
     elsif !params[:bet].nil? && !params[:et].nil?
       a_search_bytime(params[:id],params[:bet],params[:et])
-    elsif !params[:bet].nil? && (params[:et].nil? || params[:et] == Time.now)
+    elsif !params[:bet].nil? && (params[:et].empty? || params[:et] == Time.now)
       a_search_bybgtime(params[:id],params[:bet])
     elsif params[:bet] == params[:et]
       a_search_byday(params[:bet])
@@ -55,6 +55,12 @@ module ApplicationHelper
     @max = max #最大金额
     min = Basic.where("userid = ?",params[:id]).minimum("money")
     @min = min #最小值
+    @pay = Basic.where("userid = ?",params[:id])
+    @rec = Basic.where("userid = ?",params[:id])
+    @pay_money = @pay.map { |f| f.money }
+    @rec_money = @rec.map { |f| f.money }
+    @time = @pay.map { |f| f.receive_time.strftime("%Y-%m-%d") }
+    @avr_mony = Basic.where("userid = ?",params[:id]).average("money")
     recsum = Basic.where("tousername = ?",params[:id]).sum("money")
     if recsum
       @recsum = recsum #收入总金额
@@ -116,7 +122,7 @@ module ApplicationHelper
 
   def u_search_all #用户关联搜索默认时间降序
     finances = Basic.where("userid = ?",params[:id]).order(receive_time: :desc)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def u_search_bytime(uid,bet,et) #起始时间和终止时间都存在
@@ -126,7 +132,7 @@ module ApplicationHelper
     endtime = et
     finances = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,
                            begintime,endtime).order(receive_time: :desc)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def u_search_bybgtime(uid,bet) #只有起始时间
@@ -134,18 +140,18 @@ module ApplicationHelper
     begintime = bet
     finances = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,
                            begintime,Time.now).order(receive_time: :desc)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def u_search_byday(bet) #起始时间等于终止时间
     begintime = bet
     finances = Basic.where("userid = ? AND receive_time = ?",params[:id],begintime)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def a_search_all #账户关联搜索默认时间降序
     finances = Basic.where("pay_account = ?",params[:id]).order(receive_time: :desc)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def a_search_bytime(aid,bet,et)
@@ -154,7 +160,7 @@ module ApplicationHelper
     endtime = et
     finances = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,
                          begintime,endtime)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def a_search_bybgtime(aid, bet)
@@ -162,13 +168,13 @@ module ApplicationHelper
     begintime = bet
     finances = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,
                            begintime,Time.now).order(receive_time: :desc)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
   def a_search_byday(bet)
     begintime =bet
     finances = Basic.where("pay_account = ? AND receive_time = ?",params[:id],begintime)
-    @finances = finances.paginate(page:params[:page]).per_page(5)
+    @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
 end
