@@ -4,7 +4,7 @@ module ApplicationHelper
       u_search_all
     elsif !params[:bet].nil? && !params[:et].nil?
       u_search_bytime(params[:id],params[:bet],params[:et])
-    elsif !params[:bet].nil? && (params[:et].empty? || params[:et] == Time.now)
+    elsif !params[:bet].nil? && params[:et].nil?
       u_search_bybgtime(params[:id],params[:bet])
     elsif params[:bet] == params[:et]
       u_search_byday(params[:bet])
@@ -18,7 +18,7 @@ module ApplicationHelper
       a_search_all
     elsif !params[:bet].nil? && !params[:et].nil?
       a_search_bytime(params[:id],params[:bet],params[:et])
-    elsif !params[:bet].nil? && (params[:et].empty? || params[:et] == Time.now)
+    elsif !params[:bet].nil? && params[:et].nil?
       a_search_bybgtime(params[:id],params[:bet])
     elsif params[:bet] == params[:et]
       a_search_byday(params[:bet])
@@ -32,8 +32,6 @@ module ApplicationHelper
       u_finance_countall
     elsif !params[:bet].nil? && !params[:et].nil?
       u_finance_countby_time(params[:id],params[:bet],params[:et])
-    else
-      render 'index'
     end
   end
 
@@ -42,8 +40,6 @@ module ApplicationHelper
       a_finance_countall
     elsif !params[:bet].nil? && !params[:et].nil?
       a_finance_countby_time(params[:id],params[:bet],params[:et])
-    else
-      render 'index'
     end
   end
 
@@ -56,10 +52,10 @@ module ApplicationHelper
     min = Basic.where("userid = ?",params[:id]).minimum("money")
     @min = min #最小值
     @pay = Basic.where("userid = ?",params[:id])
-    @rec = Basic.where("userid = ?",params[:id])
-    @pay_money = @pay.map { |f| f.money }
-    @rec_money = @rec.map { |f| f.money }
-    @time = @pay.map { |f| f.receive_time.strftime("%Y-%m-%d") }
+    @rec = Basic.where("tousername = ?",params[:id])
+    @pay_money = @pay.map { |f| f.money.to_f }
+    @rec_money = @rec.map { |f| f.money.to_f }
+    @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
     @avr_mony = Basic.where("userid = ?",params[:id]).average("money")
     recsum = Basic.where("tousername = ?",params[:id]).sum("money")
     if recsum
@@ -85,6 +81,11 @@ module ApplicationHelper
     @max = max
     min = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime).minimum("money")
     @min = min
+    @pay = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime)
+    @rec = Basic.where("tousername = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime)
+    @pay_money = @pay.map { |f| f.money.to_f }
+    @rec_money = @rec.map { |f| f.money.to_f }
+    @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
     recsum = Basic.where("tousername = ? AND receive_time BETWEEN ? AND ?",userid,begintime,endtime).sum("money")
     if recsum
       @recsum = recsum
