@@ -142,6 +142,30 @@ module ApplicationHelper
     finances = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,
                            begintime,Time.now).order(receive_time: :desc)
     @finances = finances.paginate(page:params[:page]).per_page(6)
+
+    sum = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now).sum("money")
+    @sum = sum
+    max = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now).maximum("money")
+    @max = max
+    min = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now).minimum("money")
+    @min = min
+    @pay = Basic.where("userid = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now)
+    @rec = Basic.where("tousername = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now)
+    @pay_money = @pay.map { |f| f.money.to_f }
+    @rec_money = @rec.map { |f| f.money.to_f }
+    @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
+    recsum = Basic.where("tousername = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now).sum("money")
+    if recsum
+      @recsum = recsum
+    end
+    recmax = Basic.where("tousername = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now).maximum("money")
+    if recmax
+      @recmax = recmax
+    end
+    recmin = Basic.where("tousername = ? AND receive_time BETWEEN ? AND ?",userid,begintime,Time.now).minimum("money")
+    if recmin
+      @recmin = recmin
+    end
   end
 
   def u_search_byday(bet) #起始时间等于终止时间

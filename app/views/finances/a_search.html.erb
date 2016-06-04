@@ -49,7 +49,7 @@
         <tbody id="search">
         <% @finances.each do |f| %>
             <tr>
-              <td><%=f.userid%></td>
+              <td><%=User.find(f.userid).username%></td>
               <td><%=f.pay_type%></td>
               <td><%=Account.find(f.pay_account).bank_account%></td>
               <td><%=f.to_bank_account%></td>
