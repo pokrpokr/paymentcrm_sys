@@ -125,8 +125,11 @@
             function (ec) {
               // 基于准备好的dom，初始化echarts图表
               var myChart = ec.init(document.getElementById('echarts'));
-
+              <% if @time.empty? %>
+              var arr1 = <%= @rec_time %>;
+              <% else %>
               var arr1 = <%= @time %>;
+              <% end %>
               var arr2 = <%= @pay_money %>
               var arr3 = <%= @rec_money %>
                   option = {

@@ -43,7 +43,6 @@ module ApplicationHelper
     end
   end
 
-  private
   def u_finance_countall #用户交易金额统计
     sum = Basic.where("userid = ?",params[:id]).sum("money")
     @sum =sum #总金额
@@ -111,6 +110,7 @@ module ApplicationHelper
     @pay_money = @pay.map { |f| f.money.to_f }
     @rec_money = @rec.map { |f| f.money.to_f }
     @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
+    @rec_time = @rec.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
     recsum = Basic.where("to_bank_account = ?",Account.find(params[:id]).bank_account).sum("money")
     if recsum
       @recsum = recsum #收入总金额
@@ -209,6 +209,9 @@ module ApplicationHelper
 
   def a_search_all #账户关联搜索默认时间降序
     finances = Basic.where("pay_account = ?",params[:id]).order(receive_time: :desc)
+    if finances.empty?
+      finances = Basic.where("to_bank_account = ?",Account.find(params[:id]).bank_account).order(receive_time: :desc)
+    end
     @finances = finances.paginate(page:params[:page]).per_page(6)
   end
 
