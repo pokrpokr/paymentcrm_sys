@@ -56,7 +56,6 @@ module ApplicationHelper
     @pay_money = @pay.map { |f| f.money.to_f }
     @rec_money = @rec.map { |f| f.money.to_f }
     @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
-    @avr_mony = Basic.where("userid = ?",params[:id]).average("money")
     recsum = Basic.where("tousername = ?",params[:id]).sum("money")
     if recsum
       @recsum = recsum #收入总金额
@@ -107,6 +106,23 @@ module ApplicationHelper
     @max = max #最大金额
     min = Basic.where("pay_account = ?",params[:id]).minimum("money")
     @min = min #最小值
+    @pay = Basic.where("pay_account = ?",params[:id])
+    @rec = Basic.where("to_bank_account = ?",Account.find(params[:id]).bank_account)
+    @pay_money = @pay.map { |f| f.money.to_f }
+    @rec_money = @rec.map { |f| f.money.to_f }
+    @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
+    recsum = Basic.where("to_bank_account = ?",Account.find(params[:id]).bank_account).sum("money")
+    if recsum
+      @recsum = recsum #收入总金额
+    end
+    recmax = Basic.where("to_bank_account = ?",Account.find(params[:id]).bank_account).maximum("money")
+    if recmax
+      @recmax = recmax #收入最大金额
+    end
+    recmin = Basic.where("to_bank_account = ?",Account.find(params[:id]).bank_account).minimum("money")
+    if recmin
+      @recmin = recmin #收入最小金额
+    end
   end
 
   def a_finance_countby_time(aid,bet,et) #某段时间的交易金额统计
@@ -119,6 +135,23 @@ module ApplicationHelper
     @max = max
     min = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,begintime,endtime).minimum("money")
     @min = min
+    @pay = Basic.where("pay_account = ? AND receive_time BETWEEN ? AND ?",accountid,begintime,endtime)
+    @rec = Basic.where("to_bank_account = ? AND receive_time BETWEEN ? AND ?",Account.find(accountid).bank_account,begintime,endtime)
+    @pay_money = @pay.map { |f| f.money.to_f }
+    @rec_money = @rec.map { |f| f.money.to_f }
+    @time = @pay.map { |f| f.receive_time.strftime("%Y%m%d").to_i }
+    recsum = Basic.where("to_bank_account = ? AND receive_time BETWEEN ? AND ?",Account.find(accountid).bank_account,begintime,endtime).sum("money")
+    if recsum
+      @recsum = recsum #收入总金额
+    end
+    recmax = Basic.where("to_bank_account = ? AND receive_time BETWEEN ? AND ?",Account.find(accountid).bank_account,begintime,endtime).maximum("money")
+    if recmax
+      @recmax = recmax #收入最大金额
+    end
+    recmin = Basic.where("to_bank_account = ? AND receive_time BETWEEN ? AND ?",Account.find(accountid).bank_account,begintime,endtime).minimum("money")
+    if recmin
+      @recmin = recmin #收入最小金额
+    end
   end
 
   def u_search_all #用户关联搜索默认时间降序

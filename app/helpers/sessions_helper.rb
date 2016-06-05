@@ -25,6 +25,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def logged_out?
+    current_user.nil?
+  end
+
   def log_out
     forget(current_user)
     session.delete(:user_id)

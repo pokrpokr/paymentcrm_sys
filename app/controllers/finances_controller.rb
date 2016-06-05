@@ -89,11 +89,11 @@ class FinancesController < ApplicationController
     end
 
     if bet.nil? && et.nil? && params[:commit] == "搜索"
-      u_search_all
-      u_finance_countall
+      a_search_all
+      a_finance_countall
     elsif bet.nil? && et != "" && params[:commit] == "搜索"
       flash.now[:danger] = "起始时间不能为空"
-      render 'u_search'
+      render 'a_search'
       # elsif et == "" && params[:commit] == "搜索"
       #   flash.now[:danger] = "结束时间不能为空"
       #   render 'u_search'

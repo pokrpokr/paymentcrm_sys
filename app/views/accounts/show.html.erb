@@ -1,2 +1,32 @@
-<h1><%= @account.bank_account_no %></h1>
-<%= link_to "账务查询", a_search_path(@account) %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt><p>账户名称:</p></dt>
+      <dd><p><%= @account.bank_account %></p></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt><p>账户卡号:</p></dt>
+      <dd><p><%= @account.bank_account_no %></p></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt><p>所属银行:</p></dt>
+      <% if @account.bank_type == "" %>
+          <dd>无</dd>
+      <% else %>
+          <dd><p><%= @account.bank_type %></p></dd>
+      <% end %>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt><p>账户类型:</p></dt>
+      <% if @account.account_type == "1" %>
+      <dd><p>支付账户</p></dd>
+      <% elsif  @account.account_type == "2"%>
+      <dd><p>银行卡</p></dd>
+      <% end %>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt><p>账户操作</p></dt>
+      <dd><%= link_to "账务查询", a_search_path(@account) %></dd>
+    </dl>
+  </div>
+</div>

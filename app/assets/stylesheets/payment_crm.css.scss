@@ -195,3 +195,15 @@ footer {
   width: 1000px;
   height: 400px;
 }
+
+.jumbotron {
+  text-align: center;
+    p {
+      display: inline;
+    }
+}
+.panel-body {
+  p {
+    font-size: medium;
+  }
+}

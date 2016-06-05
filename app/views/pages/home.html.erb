@@ -1,2 +1,7 @@
-<h1>欢迎使用本系统</h1>
-
+<div class="jumbotron">
+  <h1>欢迎使用本系统</h1>
+  <p>支付结算账户管理系统</p>
+  <% if logged_out? %>
+  <p><a class="btn btn-primary btn-lg" href="sessions/new" role="button">登 录</a></p>
+      <% end %>
+</div>

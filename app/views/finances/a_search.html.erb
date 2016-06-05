@@ -102,5 +102,110 @@
         </tr>
         </tbody>
       </table>
+      <div id="echarts">
+
+
+      </div>
+      <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+      <script type="text/javascript">
+        // 路径配置
+        require.config({
+          paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+          }
+        });
+
+        // 使用
+        require(
+            [
+              'echarts',
+              'echarts/chart/line',
+              'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+              // 基于准备好的dom，初始化echarts图表
+              var myChart = ec.init(document.getElementById('echarts'));
+
+              var arr1 = <%= @time %>;
+              var arr2 = <%= @pay_money %>
+              var arr3 = <%= @rec_money %>
+                  option = {
+                    title : {
+                      text: '财务统计',
+                      subtext: '金额'
+                    },
+                    tooltip : {
+                      trigger: 'axis'
+                    },
+                    legend: {
+                      data:['支出金额','收入金额']
+                    },
+                    toolbox: {
+                      show : true,
+                      feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                      }
+                    },
+                    calculable : true,
+                    xAxis : [
+                      {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : arr1
+                      }
+                    ],
+                    yAxis : [
+                      {
+                        type : 'value',
+                        axisLabel : {
+                          formatter: '{value} 元'
+                        }
+                      }
+                    ],
+                    series : [
+                      {
+                        name:'支出金额',
+                        type:'line',
+                        data:arr2,
+                        markPoint : {
+                          data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                          ]
+                        },
+                        markLine : {
+                          data : [
+                            {type : 'average', name: '平均值'}
+                          ]
+                        }
+                      },
+                      {
+                        name:'收入金额',
+                        type:'line',
+                        data:arr3,
+                        markPoint : {
+                          data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                          ]
+                        },
+                        markLine : {
+                          data : [
+                            {type : 'average', name : '平均值'}
+                          ]
+                        }
+                      }
+                    ]
+                  };
+
+              // 为echarts对象加载数据
+              myChart.setOption(option);
+            }
+        );
+      </script>
     </div>
 <% end %>
